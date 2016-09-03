@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.slothfx.dao.ORM;
 import com.slothfx.dao.setter.TagsSetter;
+import com.slothfx.dao.setter.TasksSetter;
 
 public class Project {
 
@@ -59,6 +60,17 @@ public class Project {
 		ArrayList<String> parameters = new ArrayList<>();
 		parameters.add(getId()+"");
 		orm.load("internal.load.projectTags", parameters, setter);
+		
+	}
+	
+	public void loadTasks(Application application){
+		ORM orm = application.getORM();
+		
+		TasksSetter setter = new TasksSetter(tasks);
+		
+		ArrayList<String> parameters = new ArrayList<>();
+		parameters.add(getId()+"");
+		orm.load("internal.load.projectTasks", parameters, setter);
 		
 	}
 
