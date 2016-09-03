@@ -40,7 +40,7 @@ public class Application {
 		}
 		String[] files = getConfig("sql.init.sql").split(", ");
 		for(int i = 0 ; i < files.length ; i++)
-			orm.create("internal.init."+files[i]);
+			orm.exec("internal.init."+files[i]);
 		
 		return true;
 	}

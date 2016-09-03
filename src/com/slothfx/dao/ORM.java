@@ -26,18 +26,14 @@ public class ORM {
 	}
 
 	public Connection getConnection(String dataBase) {
-		if (connections.containsKey(dataBase)) {
-			return connections.get(dataBase);
+		if (!connections.containsKey(dataBase)) {
+			initConnection(dataBase);
 		}
 
-		Connection connection = initConnection(dataBase);
-
-		connections.put(dataBase, connection);
-
-		return connection;
+		return connections.get(dataBase);
 	}
 
-	public Connection initConnection(String dataBase) {
+	public boolean initConnection(String dataBase) {
 		Connection connection = null;
 		String driver, location;
 
@@ -52,12 +48,17 @@ public class ORM {
 		try {
 			Class.forName(driver);
 			connection = DriverManager.getConnection(location);
+			connections.put(dataBase, connection);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			return false;
 		}
-
-		return connection;
+		
+		// TODO if internal run init
+		if(dataBase.equals("internal"))
+			exec("internal.init.init");
+		return true;
 	}
 	
 	public void close(){
@@ -84,7 +85,7 @@ public class ORM {
 		return request;
 	}
 
-	public boolean create(String name){
+	public boolean exec(String name){
 		Request request = getRequest(name);
 		
 		Connection connection = getConnection(request.getDataBase());
