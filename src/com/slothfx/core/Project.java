@@ -1,6 +1,10 @@
 package com.slothfx.core;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.slothfx.dao.ORM;
+import com.slothfx.dao.setter.TagsSetter;
 
 public class Project {
 
@@ -9,6 +13,11 @@ public class Project {
 
 	private List<Task> tasks;
 	private List<Tag> tags;
+	
+	public Project() {
+		tasks = new ArrayList<>();
+		tags = new ArrayList<>();
+	}
 
 	public int getId() {
 		return id;
@@ -40,6 +49,17 @@ public class Project {
 
 	public void setTags(List<Tag> tags) {
 		this.tags = tags;
+	}
+	
+	public void loadTags(Application application){
+		ORM orm = application.getORM();
+		
+		TagsSetter setter = new TagsSetter(tags);
+		
+		ArrayList<String> parameters = new ArrayList<>();
+		parameters.add(getId()+"");
+		orm.load("internal.load.projectTags", parameters, setter);
+		
 	}
 
 	@Override

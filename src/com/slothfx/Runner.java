@@ -16,8 +16,11 @@ public class Runner {
 
 		orm.load("internal.load.projects", null, setter);
 		
-		System.out.println(setter.getProjects());
-		
+		for(Project p : setter.getProjects()){
+			p.loadTags(app);
+			System.out.println(p.getTags());
+			break;
+		}
 		orm.close();
 		
 	}
