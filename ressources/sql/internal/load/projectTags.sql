@@ -7,3 +7,5 @@ LEFT OUTER JOIN "ProjectTags"
 ON  "Tag"."id" = "ProjectTags"."tag"
 WHERE
     "ProjectTags"."project" = ?
+ORDER BY
+    "Tag"."name"

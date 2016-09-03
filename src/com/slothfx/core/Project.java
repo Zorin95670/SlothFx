@@ -64,6 +64,6 @@ public class Project {
 
 	@Override
 	public String toString() {
-		return "{id="+id+", name="+name+"}";
+		return "{id="+id+", name="+name+", tasks="+tasks+"+tags="+tags+"}";
 	}
 }
