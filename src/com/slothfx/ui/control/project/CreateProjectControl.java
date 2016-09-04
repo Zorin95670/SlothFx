@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import com.slothfx.core.Apps;
 import com.slothfx.core.data.Project;
+import com.slothfx.ui.component.executor.IExecutor;
 import com.slothfx.ui.component.textfield.MandatoryText;
 
 import javafx.application.Application;
@@ -20,21 +21,28 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class CreateProjectControl extends Application {
 
-	private Apps apps = new Apps();
+	private Apps apps;
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 	private MandatoryText projectName;
 	private ColorPicker projectColor;
 	private Button create, close;
 	private boolean createState = true;
+	private IExecutor executor;
+	
+	public CreateProjectControl(IExecutor executor) {
+		this.executor = executor;
+	}
 	
 	@Override
 	public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("Nouveau projet");
+        this.primaryStage.initStyle(StageStyle.DECORATED);
 
         initRootLayout();
 
@@ -50,7 +58,7 @@ public class CreateProjectControl extends Application {
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
-            primaryStage.show();
+            executor.setScene(scene);
 
             create = (Button) scene.lookup("#create");
             close = (Button) scene.lookup("#close");
@@ -97,17 +105,15 @@ public class CreateProjectControl extends Application {
             	
             	@Override
             	public void handle(MouseEvent event) {
-            		primaryStage.close();
+            		executor.execute();
             	}
 			});
+            primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-	
-	public static void run() {
-		launch();
-	}
+
 	public void createProject(){
 		if(!projectName.verify()){
 			projectName.getField().requestFocus();
@@ -120,7 +126,11 @@ public class CreateProjectControl extends Application {
 		
 		apps.getProjectController().create(project);
 		
-		primaryStage.close();
+		executor.execute();
 	}
 	
+	
+	public void setApps(Apps apps) {
+		this.apps = apps;
+	}
 }

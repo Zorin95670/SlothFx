@@ -2,19 +2,24 @@ package com.slothfx.core;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 import com.slothfx.core.controller.ProjectController;
+import com.slothfx.core.controller.TagController;
 import com.slothfx.core.data.Project;
+import com.slothfx.core.data.Tag;
 import com.slothfx.dao.ORM;
 
 public class Apps {
 	
-	private List<Project> projects;
+	private List<Project> projects = new ArrayList<>();
+	private List<Tag> tags = new ArrayList<>();
 	private Properties config;
 	private ORM orm;
 	private ProjectController projectController;
+	private TagController tagController;
 	
 	public Apps() {
 		initConfig();
@@ -24,6 +29,7 @@ public class Apps {
 		initInternalDataBase();
 		
 		projectController = new ProjectController(this);
+		setTagController(new TagController(this));
 	}
 	
 	public boolean initConfig(){
@@ -64,6 +70,30 @@ public class Apps {
 
 	public ProjectController getProjectController() {
 		return projectController;
+	}
+
+	public List<Project> getProjects() {
+		return projects;
+	}
+
+	public void setProjects(List<Project> projects) {
+		this.projects = projects;
+	}
+
+	public List<Tag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<Tag> tags) {
+		this.tags = tags;
+	}
+
+	public TagController getTagController() {
+		return tagController;
+	}
+
+	public void setTagController(TagController tagController) {
+		this.tagController = tagController;
 	}
 	
 	

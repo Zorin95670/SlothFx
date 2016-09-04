@@ -1,7 +1,7 @@
 package com.slothfx.ui.control.tag;
 
-import com.slothfx.core.controller.IExecutor;
 import com.slothfx.core.data.Tag;
+import com.slothfx.ui.component.executor.IExecutor;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

@@ -1,10 +1,12 @@
 package com.slothfx.core.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import com.slothfx.core.Apps;
 import com.slothfx.core.data.Project;
 import com.slothfx.dao.ORM;
+import com.slothfx.dao.setter.ProjectsSetter;
 
 public class ProjectController extends AbstractController<Project> {
 
@@ -36,6 +38,15 @@ public class ProjectController extends AbstractController<Project> {
 	public boolean delete(Project t) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	
+	public boolean loadAll(List<Project> projects){
+		ORM orm = getApps().getORM();
+		
+		ProjectsSetter setter = new ProjectsSetter(projects);
+		orm.load("internal.load.projects", null, setter);
+		
+		return true;
 	}
 
 }

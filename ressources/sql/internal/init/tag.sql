@@ -1,4 +1,5 @@
 CREATE TABLE IF NOT EXISTS "Tag"(
-    "id"   INTEGER PRIMARY KEY AUTOINCREMENT,
-    "name" TEXT
+    "id"    INTEGER PRIMARY KEY AUTOINCREMENT,
+    "name"  TEXT,
+    "color" TEXT
 );
