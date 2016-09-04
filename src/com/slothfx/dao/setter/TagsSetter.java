@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.slothfx.core.Tag;
+import com.slothfx.core.data.Tag;
+
 
 public class TagsSetter implements ISetter {
 

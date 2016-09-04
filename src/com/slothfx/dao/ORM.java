@@ -8,17 +8,17 @@ import java.sql.Statement;
 import java.util.HashMap;
 import java.util.List;
 
-import com.slothfx.core.Application;
+import com.slothfx.core.Apps;
 import com.slothfx.dao.setter.ISetter;
 
 public class ORM {
 
-	private Application application;
+	private Apps application;
 
 	private HashMap<String, Connection> connections;
 	private HashMap<String, Request> requests;
 
-	public ORM(Application application) {
+	public ORM(Apps application) {
 		this.application = application;
 
 		connections = new HashMap<>();
@@ -132,5 +132,35 @@ public class ORM {
 		}
 
 		return true;
+	}	
+	public long insert(String name, List<String> parameters){
+		Request request = getRequest(name);
+		
+		Connection connection = getConnection(request.getDataBase());
+		long inserted = -1;
+		try {
+			PreparedStatement statement = connection.prepareStatement(request.getQuery(), Statement.RETURN_GENERATED_KEYS);
+			if(parameters != null){
+				for(int i = 0 ; i < parameters.size() ; i++){
+					statement.setString(i+1, parameters.get(i));
+				}
+			}
+			
+			if(statement.executeUpdate() != 0){
+				
+				ResultSet set = statement.getGeneratedKeys();
+				if(set.next())
+					inserted = set.getLong(1);
+				set.close();
+			}
+			statement.close();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return inserted;
+		}
+
+		return inserted;
 	}
 }

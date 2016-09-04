@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.slothfx.core.Task;
+import com.slothfx.core.data.Task;
+
 
 public class TasksSetter implements ISetter {
 

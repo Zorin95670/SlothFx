@@ -1,8 +1,9 @@
-package com.slothfx.core;
+package com.slothfx.core.data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.slothfx.core.Apps;
 import com.slothfx.dao.ORM;
 import com.slothfx.dao.setter.TagsSetter;
 
@@ -10,7 +11,7 @@ public class Task {
 
 	private Project project;
 
-	private int id;
+	private long id;
 	private String name;
 
 	private List<Time> times;
@@ -24,11 +25,11 @@ public class Task {
 		this.project = project;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -56,7 +57,7 @@ public class Task {
 		this.tags = tags;
 	}
 	
-	public void loadTags(Application application){
+	public void loadTags(Apps application){
 		ORM orm = application.getORM();
 		
 		TagsSetter setter = new TagsSetter(tags);

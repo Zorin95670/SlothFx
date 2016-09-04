@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.slothfx.core.Project;
+import com.slothfx.core.data.Project;
+
 
 public class ProjectsSetter implements ISetter {
 

@@ -5,20 +5,25 @@ import java.io.FileInputStream;
 import java.util.List;
 import java.util.Properties;
 
+import com.slothfx.core.controller.ProjectController;
+import com.slothfx.core.data.Project;
 import com.slothfx.dao.ORM;
 
-public class Application {
+public class Apps {
 	
 	private List<Project> projects;
 	private Properties config;
 	private ORM orm;
+	private ProjectController projectController;
 	
-	public Application() {
+	public Apps() {
 		initConfig();
 		
 		orm = new ORM(this);
 		
 		initInternalDataBase();
+		
+		projectController = new ProjectController(this);
 	}
 	
 	public boolean initConfig(){
@@ -55,6 +60,10 @@ public class Application {
 
 	public ORM getORM() {
 		return orm;
+	}
+
+	public ProjectController getProjectController() {
+		return projectController;
 	}
 	
 	

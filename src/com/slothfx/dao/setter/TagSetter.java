@@ -3,7 +3,8 @@ package com.slothfx.dao.setter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.slothfx.core.Tag;
+import com.slothfx.core.data.Tag;
+
 
 public class TagSetter implements ISetter {
 

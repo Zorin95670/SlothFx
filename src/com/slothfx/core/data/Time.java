@@ -1,4 +1,4 @@
-package com.slothfx.core;
+package com.slothfx.core.data;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ public class Time {
 
 	private Task task;
 
-	private int id;
+	private long id;
 	private Date startTime;
 	private Date endTime;
 
@@ -18,11 +18,11 @@ public class Time {
 		this.task = task;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

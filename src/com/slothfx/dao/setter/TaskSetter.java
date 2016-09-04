@@ -3,7 +3,8 @@ package com.slothfx.dao.setter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.slothfx.core.Task;
+import com.slothfx.core.data.Task;
+
 
 public class TaskSetter implements ISetter {
 

@@ -1,16 +1,20 @@
-package com.slothfx.core;
+package com.slothfx.core.data;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.slothfx.core.Apps;
 import com.slothfx.dao.ORM;
 import com.slothfx.dao.setter.TagsSetter;
 import com.slothfx.dao.setter.TasksSetter;
 
+import javafx.scene.paint.Color;
+
 public class Project {
 
-	private int id;
+	private long id;
 	private String name;
+	private Color color;
 
 	private List<Task> tasks;
 	private List<Tag> tags;
@@ -20,11 +24,11 @@ public class Project {
 		tags = new ArrayList<>();
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -34,6 +38,14 @@ public class Project {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	public List<Task> getTasks() {
@@ -52,7 +64,7 @@ public class Project {
 		this.tags = tags;
 	}
 	
-	public void loadTags(Application application){
+	public void loadTags(Apps application){
 		ORM orm = application.getORM();
 		
 		TagsSetter setter = new TagsSetter(tags);
@@ -63,7 +75,7 @@ public class Project {
 		
 	}
 	
-	public void loadTasks(Application application){
+	public void loadTasks(Apps application){
 		ORM orm = application.getORM();
 		
 		TasksSetter setter = new TasksSetter(tasks);

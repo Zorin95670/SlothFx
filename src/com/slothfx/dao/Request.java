@@ -4,14 +4,14 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 
-import com.slothfx.core.Application;
+import com.slothfx.core.Apps;
 
 public class Request {
 
 	private String dataBase;
 	private String query;
 
-	public boolean init(Application application, String fileName) {
+	public boolean init(Apps application, String fileName) {
 		if (fileName.contains("internal")) {
 			this.setDataBase("internal");
 		} else {
