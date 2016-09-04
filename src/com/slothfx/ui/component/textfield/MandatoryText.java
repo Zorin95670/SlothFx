@@ -38,4 +38,9 @@ public class MandatoryText {
 
 	}
 
+	public TextField getField() {
+		return field;
+		
+	}
+
 }
