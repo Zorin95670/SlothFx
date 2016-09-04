@@ -14,7 +14,7 @@ public class Project {
 
 	private long id;
 	private String name;
-	private Color color;
+	private String color;
 
 	private List<Task> tasks;
 	private List<Tag> tags;
@@ -40,12 +40,16 @@ public class Project {
 		this.name = name;
 	}
 
-	public Color getColor() {
+	public String getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+	public void setColor(String color){
 		this.color = color;
+	}
+
+	public void setColor(Color color) {
+		this.color = "#"+Integer.toHexString(color.hashCode()).substring(0, 6).toUpperCase();
 	}
 
 	public List<Task> getTasks() {

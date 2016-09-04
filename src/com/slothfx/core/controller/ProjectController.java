@@ -13,14 +13,12 @@ public class ProjectController extends AbstractController<Project> {
 	}
 
 	@Override
-	public boolean create(Project p) {
-		String color = "#"+Integer.toHexString(p.getColor().hashCode()).substring(0, 6).toUpperCase();
-		
+	public boolean create(Project p) {		
 		ORM orm = getApps().getORM();
 		
 		ArrayList<String> parameters = new ArrayList<>();
 		parameters.add(p.getName());
-		parameters.add(color);
+		parameters.add(p.getColor());
 		
 		long id = orm.insert("internal.create.project",parameters);
 		p.setId(id);
